@@ -1,22 +1,24 @@
+import CardController from "../controllers/CardController.js";
+
 export default function cardRoutes(app)
 {
-    app.get('/cards', (req, res) => {
-
+    app.get('/api/cards', (req, res) => {
+        return CardController.getAll(req, res);
     });
 
-    app.get('/cards/:id', (req, res) => {
-        
+    app.get('/api/cards/:id', (req, res) => {
+        return CardController.get(req, res);
     });
 
-    app.post('/cards', (req, res) => {
-        
+    app.post('/api/cards', (req, res) => {
+        return CardController.insert(req, res);
     });
 
-    app.patch('/cards/:id', (req, res) => {
-        
+    app.patch('/api/cards/:id', (req, res) => {
+       return CardController.update(req, res); 
     });
 
-    app.delete('/cards/:id', (req, res) => {
-        
+    app.delete('/api/cards/:id', (req, res) => {
+        return CardController.delete(req, res);
     });
 }
