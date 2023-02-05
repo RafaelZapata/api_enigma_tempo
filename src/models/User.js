@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
-const user = mongoose.model('User', {
+const User = mongoose.model('User', {
     name: String,
     email: String,
     password: String,
     role: String
 })
 
-export default user;
+export default User;
