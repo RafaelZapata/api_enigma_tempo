@@ -47,7 +47,7 @@ export default class CardController
 
             const result = await Card.findByIdAndUpdate(req.params.id, card).populate();
 
-            return res.json({message: 'Card updated', card: card});
+            return res.json({message: 'Card updated', card: result});
 
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad request', error});
