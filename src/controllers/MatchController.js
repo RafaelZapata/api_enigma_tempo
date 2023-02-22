@@ -5,7 +5,7 @@ export default class MatchController
     static async getAll(req, res)
     {
         try {
-            const matches = await Match.find().populate('player').populate('hero').populate('deck');
+            const matches = await Match.find().populate('player').populate('player_hero').populate('deck').populate('enemy_hero');
             return res.json({matches: matches});
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad Request ', error});
@@ -15,7 +15,7 @@ export default class MatchController
     static async get(req, res)
     {
         try {
-            const match = await Match.findById(req.params.id).populate('player').populate('hero').populate('deck');
+            const match = await Match.findById(req.params.id).populate('player').populate('player_hero').populate('deck').populate('enemy_hero');
 
             if(!match) return res.status(404).json({message: 'Match não encontrada'});
 
