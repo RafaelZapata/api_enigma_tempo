@@ -5,7 +5,7 @@ export default class CardController
     static async getAll(req, res)
     {
         try {
-            const cards = await Card.find();
+            const cards = await Card.find().populate();
             return res.json({cards: cards});
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad Request ', error});
@@ -15,7 +15,7 @@ export default class CardController
     static async get(req, res)
     {
         try {
-            const card = await Card.findById(req.params.id);
+            const card = await Card.findById(req.params.id).populate();
 
             if(!card) return res.status(404).json({message: 'Carta não encontrada'});
 
@@ -45,9 +45,9 @@ export default class CardController
             const {name, attack, health, mana, description, sprite, rarity, effect, params} = req.body;
             const card = {name, attack, health, mana, description, sprite, rarity, effect, params}
 
-            const result = await Card.findByIdAndUpdate(req.params.id, card);
+            const result = await Card.findByIdAndUpdate(req.params.id, card).populate();
 
-            return res.json({message: 'Card updated', card: card});
+            return res.json({message: 'Card updated', card: result});
 
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad request', error});
