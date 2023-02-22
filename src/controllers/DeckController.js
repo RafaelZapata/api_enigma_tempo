@@ -45,7 +45,7 @@ export default class DeckController
             const {name, active, player, hero, cards} = req.body;
             const deck = {name, active, player, hero, cards}
 
-            await Deck.findByIdAndUpdate(req.params.id, deck).populate();
+            await Deck.findByIdAndUpdate(req.params.id, deck)
 
             return res.json({message: 'Deck updated'});
 

@@ -45,7 +45,7 @@ export default class CardController
             const {name, attack, health, mana, description, sprite, rarity, effect, params} = req.body;
             const card = {name, attack, health, mana, description, sprite, rarity, effect, params}
 
-            await Card.findByIdAndUpdate(req.params.id, card).populate();
+            await Card.findByIdAndUpdate(req.params.id, card)
 
             return res.json({message: 'Card updated'});
 
