@@ -28,12 +28,12 @@ export default class MatchController
     static async insert(req, res)
     {
         try {
-            const {name, active, player, hero, cards} = req.body;
-            const match = {name, active: true, player, hero, cards}
+            const {player, player_hero, enemy_hero, deck, starts, ends, result} = req.body;
+            const match = {player, player_hero, enemy_hero, deck, starts, ends, result}
 
-            const result = await Match.create(match);
+            const r = await Match.create(match);
 
-            return res.status(201).json({message: 'Match inserted', result});
+            return res.status(201).json({message: 'Match inserted', r});
         } catch (error) {
             return res.status(500).json({message: "Erro inesperado. Bad request ", error});
         }

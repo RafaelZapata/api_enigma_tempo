@@ -7,7 +7,7 @@ const matchSchema = Schema({
     deck: {type: mongoose.Schema.Types.ObjectId, ref: 'decks'},
     starts: {type: String},
     ends: {type: String},
-    match_result: {type: Boolean}
+    result: {type: Boolean}
 });
 
 const Match = mongoose.model('matches', matchSchema);
