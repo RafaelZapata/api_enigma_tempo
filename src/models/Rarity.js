@@ -1,7 +1,10 @@
 import mongoose from "mongoose";
+import { Schema } from "mongoose";
 
-const Rarity = mongoose.model('Rarity', {
-    name: String
-});
+const raritySchema = Schema({
+    name: {type: String}
+})
+
+const Rarity = mongoose.model('rarities', raritySchema);
 
 export default Rarity;

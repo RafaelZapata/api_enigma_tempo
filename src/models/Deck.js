@@ -1,11 +1,14 @@
 import mongoose from "mongoose";
+import { Schema } from "mongoose";
 
-const Deck = mongoose.model('Deck', {
-    name: String,
-    active: Boolean,
-    player: mongoose.Schema.Types.ObjectId,
-    hero: mongoose.Schema.Types.ObjectId,
-    cards: Array(mongoose.Schema.Types.ObjectId)
-});
+const deckSchema = Schema({
+    name: {type: String},
+    active: {type: Boolean},
+    player: {type: mongoose.Schema.Types.ObjectId, ref: 'users'},
+    hero: {type: mongoose.Schema.Types.ObjectId, ref: 'heroes'},
+    cards: {type: Array(mongoose.Schema.Types.ObjectId), ref: 'cards'},
+})
+
+const Deck = mongoose.model('Deck', deckSchema);
 
 export default Deck;

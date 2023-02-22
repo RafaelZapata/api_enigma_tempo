@@ -1,16 +1,19 @@
 import mongoose from "mongoose";
+import { Schema } from "mongoose";
 
-const Card = mongoose.model('Card', {
-    name: String,
-    attack: Number,
-    health: Number,
-    mana: Number,
-    description: String,
-    sprite: String,
-    type: mongoose.Schema.Types.ObjectId,
-    rarity: mongoose.Schema.Types.ObjectId,
-    effect: String,
-    params: String
-});
+const cardSchema = Schema({
+    name: {type: String},
+    attack: {type: Number},
+    health: {type: Number},
+    mana: {type: Number},
+    description: {type: String},
+    sprite: {type: String},
+    type: {type: mongoose.Schema.Types.ObjectId, ref: "types"},
+    rarity: {type: mongoose.Schema.Types.ObjectId, ref: "rarities"},
+    effect: {type: String},
+    params: {type: String},
+})
+
+const Card = mongoose.model('cards', cardSchema);
 
 export default Card;

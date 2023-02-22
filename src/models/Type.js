@@ -1,7 +1,10 @@
 import mongoose from "mongoose";
+import { Schema } from "mongoose";
 
-const Type = mongoose.model('Type', {
-    name: String
-});
+const typeSchema = Schema({
+    name: {type: String}
+})
+
+const Type = mongoose.model('types', typeSchema);
 
 export default Type;

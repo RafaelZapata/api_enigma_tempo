@@ -1,8 +1,11 @@
 import mongoose from "mongoose";
+import { Schema } from "mongoose";
 
-const Hero = mongoose.model('Hero', {
-    name: String,
-    hero_lines: String
-});
+const heroSchema = Schema({
+    name: {type: String},
+    hero_lines: {type: String}
+})
+
+const Hero = mongoose.model('heroes', heroSchema);
 
 export default Hero;

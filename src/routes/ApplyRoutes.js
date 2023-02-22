@@ -1,4 +1,5 @@
 import cardRoutes from "./CardRoutes.js";
+import deckRoutes from "./DeckRoutes.js";
 import heroRoutes from "./HeroRoutes.js";
 import rarityRoutes from "./RarityRoutes.js";
 import typesRoutes from "./TypeRoutes.js";
@@ -11,4 +12,5 @@ export default function applyRoutes(app)
     userRoutes(app);
     heroRoutes(app);
     typesRoutes(app);
+    deckRoutes(app);
 }

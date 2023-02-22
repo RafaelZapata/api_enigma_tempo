@@ -5,7 +5,7 @@ export default class CardController
     static async getAll(req, res)
     {
         try {
-            const cards = await Card.find().populate();
+            const cards = await Card.find().populate('rarity').populate('type');
             return res.json({cards: cards});
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad Request ', error});
@@ -28,8 +28,8 @@ export default class CardController
     static async insert(req, res)
     {
         try {
-            const {name, attack, health, mana, description, sprite, rarity, effect, params} = req.body;
-            const card = {name, attack, health, mana, description, sprite, rarity, effect, params}
+            const {name, attack, health, mana, description, sprite, type, rarity, effect, params} = req.body;
+            const card = {name, attack, health, mana, description, sprite, type, rarity, effect, params}
 
             let result = await Card.create(card);
 
