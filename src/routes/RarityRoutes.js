@@ -1,24 +1,24 @@
-import rarityController from "../controllers/RarityController.js";
+import RarityController from "../controllers/RarityController.js";
 
 export default function rarityRoutes(app)
 {
     app.get('/api/rarities', (req, res) => {
-        return rarityController.getAll(req, res);
+        return RarityController.getAll(req, res);
     });
 
     app.get('/api/rarities/:id', (req, res) => {
-        return rarityController.get(req, res);
+        return RarityController.get(req, res);
     });
 
     app.post('/api/rarities', (req, res) => {
-        return rarityController.insert(req, res);
+        return RarityController.insert(req, res);
     });
 
     app.patch('/api/rarities/:id', (req, res) => {
-       return rarityController.update(req, res); 
+       return RarityController.update(req, res); 
     });
 
     app.delete('/api/rarities/:id', (req, res) => {
-        return rarityController.delete(req, res);
+        return RarityController.delete(req, res);
     });
 }

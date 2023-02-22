@@ -38,7 +38,7 @@ export default class UserController
 
             if(user.password === password)
             {
-                return res.json({message: 'Logado'});
+                return res.json({message: 'Logado', user: user});
             }else {
                 return res.status(403).json({message: 'Senha incorreta'});
             }

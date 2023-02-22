@@ -7,6 +7,7 @@ const Card = mongoose.model('Card', {
     mana: Number,
     description: String,
     sprite: String,
+    type: mongoose.Schema.Types.ObjectId,
     rarity: mongoose.Schema.Types.ObjectId,
     effect: String,
     params: String

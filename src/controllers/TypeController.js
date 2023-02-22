@@ -1,12 +1,12 @@
-import Rarity from "../models/Rarity.js";
+import Type from "../models/Type.js";
 
-export default class RarityController
+export default class TypeController
 {
     static async getAll(req, res)
     {
         try {
-            const rarities = await Rarity.find();
-            return res.json({rarities: rarities});
+            const types = await Type.find();
+            return res.json({types: types});
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad Request ', error});
         }
@@ -15,11 +15,11 @@ export default class RarityController
     static async get(req, res)
     {
         try {
-            const rarity = await Rarity.findById(req.params.id);
+            const type = await Type.findById(req.params.id);
 
-            if(!rarity) return res.status(404).json({message: 'Rarity not found'});
+            if(!type) return res.status(404).json({message: 'Type not found'});
 
-            return res.json({rarity: rarity});
+            return res.json({type: type});
         } catch (error) {
             return res.status(404).json({message: "Erro inesperado. Bad request ", error});
         }
@@ -29,11 +29,11 @@ export default class RarityController
     {
         try {
             const {name} = req.body;
-            const rarity = {name};
+            const type = {name};
 
-            const result = await Rarity.create(rarity);
+            const result = await Type.create(type);
 
-            return res.status(201).json({message: 'Rarity inserted', result});
+            return res.status(201).json({message: 'Type inserted', result});
         } catch (error) {
             return res.status(500).json({message: "Erro inesperado. Bad request ", error});
         }
@@ -43,11 +43,11 @@ export default class RarityController
     {
         try {
             const {name} = req.body;
-            const rarity = {name};
+            const type = {name};
 
-            await Rarity.findByIdAndUpdate(req.params.id, rarity);
+            await Type.findByIdAndUpdate(req.params.id, type);
 
-            return res.json({message: 'Rarity updated'});
+            return res.json({message: 'Type updated'});
 
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad request', error});
@@ -57,9 +57,9 @@ export default class RarityController
     static async delete(req, res)
     {
         try {
-               const result = await Rarity.findByIdAndDelete(req.params.id);
-               if(!result) return res.status(404).json({message: 'Rarity not found'});
-               return res.json({message: 'Rarity deleted'});
+               const result = await Type.findByIdAndDelete(req.params.id);
+               if(!result) return res.status(404).json({message: 'Type not found'});
+               return res.json({message: 'Type deleted'});
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad request', error});
         }
