@@ -29,7 +29,10 @@ export default class RarityController
     static async insert(req, res)
     {
         try {
-            let result = await Rarity.create(req.body.name);
+            const {name} = req.body;
+            const rarity = {name};
+            
+            const result = await Rarity.create(rarity);
 
             return res.status(201).json({message: 'Rarity inserted', result});
         } catch (error) {
