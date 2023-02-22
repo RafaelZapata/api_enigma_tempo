@@ -5,9 +5,8 @@ export default class RarityController
     static async getAll(req, res)
     {
         try {
-            const raritys = await Rarity.find();
-            console.log(raritys);
-            return res.json({raritys: raritys});
+            const rarities = await Rarity.find();
+            return res.json({rarities: rarities});
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad Request ', error});
         }
@@ -31,7 +30,7 @@ export default class RarityController
         try {
             const {name} = req.body;
             const rarity = {name};
-            
+
             const result = await Rarity.create(rarity);
 
             return res.status(201).json({message: 'Rarity inserted', result});
@@ -45,7 +44,7 @@ export default class RarityController
         try {
             const result = await Rarity.findByIdAndUpdate(req.params.id, req.body.name);
 
-            return res.json({message: 'Rarity updated', rarity: rarity});
+            return res.json({message: 'Rarity updated', rarity: result});
 
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad request', error});

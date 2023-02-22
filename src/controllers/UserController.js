@@ -32,11 +32,11 @@ export default class UserController
     {
         try {
             const {email, password} = req.body;
-            const user =  User.find({email: email});
+            const user =  await User.findOne({email: email});
 
-            if(!user) return res.status(403).json({message: 'Não permetido'});
+            if(!user)return res.status(403).json({message: 'Não permetido'});
 
-            if(user.password == password)
+            if(user.password === password)
             {
                 return res.json({message: 'Logado'});
             }else {
