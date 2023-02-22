@@ -6,6 +6,7 @@ export default class RarityController
     {
         try {
             const raritys = await Rarity.find();
+            console.log(raritys);
             return res.json({raritys: raritys});
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad Request ', error});
