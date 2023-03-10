@@ -7,7 +7,7 @@ export default class UserController
     static async getAll(req, res)
     {
         try {
-            const users = await User.find('', '-password');
+            const users = await User.find({}, '-password');
             return res.json({users: users});
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad Request ', error});
