@@ -1,4 +1,5 @@
 import RarityController from "../controllers/RarityController.js";
+import checkToken from "../middleware/CheckToken.js";
 
 export default function rarityRoutes(app)
 {

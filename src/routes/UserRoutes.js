@@ -1,4 +1,5 @@
 import UserController from "../controllers/UserController.js";
+import checkToken from "../middleware/CheckToken.js";
 
 export default function userRoutes(app)
 {
@@ -10,7 +11,7 @@ export default function userRoutes(app)
         return UserController.insert(req, res);
     });
 
-    app.get('/api/user', (req, res) =>{
+    app.get('/api/user/:id', checkToken, (req, res) =>{
         return UserController.get(req, res);
     });
 }

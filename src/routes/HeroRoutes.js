@@ -1,4 +1,5 @@
 import HeroController from "../controllers/HeroController.js";
+import checkToken from "../middleware/CheckToken.js";
 
 export default function heroRoutes(app)
 {

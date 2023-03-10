@@ -1,11 +1,13 @@
+import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import bcrypt from 'bcrypt';
 
 export default class UserController
 {
     static async get(req, res) 
     {
         try {
-            const user = await User.find(req.params.id);
+            const user = await User.findById(req.params.id, '-password');
             if(!user) return res.status(404).json({message: 'User not found'});
 
             return res.json({me: user});
@@ -17,12 +19,33 @@ export default class UserController
     static async insert(req, res)
     {
         try {
-            const {name, email, password} = req.body;
-            const user = {name, email, password, role: 'player'};
+            const {name, last_name, username, email , password, confirmpassword} = req.body;
+            const user = {name, last_name, username, email, password, role: 'player'};
 
-            const result = await User.create(user);
+            if(!name) return res.status(422).json({message: 'Name is required'});
 
-            return res.status(201).json({message: 'Created user successfully', user: result})
+            if(!username) return res.status(422).json({message: 'Username is required'});
+            
+            if(!email) return res.status(422).json({message: 'Email is required'});
+            
+            if(!password) return res.status(422).json({message: 'Password is required'});
+            
+            if(password !== confirmpassword ) return res.status(422).json({message: 'Passwords did not match. Please try again'});
+
+            const salt = await bcrypt.genSalt(10);
+            const passwordHash = await bcrypt.hash(password, salt);
+            
+            user.password = passwordHash;
+
+            const usernameExists = await User.findOne({username: username});
+            if(usernameExists) return res.status(422).json({code: 1, message: 'Username already exists'});
+            
+            const emailExists = await User.findOne({email: email});
+            if(emailExists) return res.status(422).json({code: 2, message: 'Email already exists'});
+
+            await User.create(user);
+
+            return res.status(201).json({message: 'Created user successfully'})
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad Request ', error});
         }
@@ -31,17 +54,25 @@ export default class UserController
     static async login(req, res)
     {
         try {
-            const {email, password} = req.body;
-            const user =  await User.findOne({email: email});
+            const {username, password} = req.body;
 
-            if(!user)return res.status(403).json({message: 'Não permetido'});
+            if(!username) return res.status(422).json({message: 'Username is required'});
 
-            if(user.password === password)
-            {
-                return res.json({message: 'Logado', user: user});
-            }else {
-                return res.status(403).json({message: 'Senha incorreta'});
-            }
+            if(!password) return res.status(422).json({message: 'Password is required'});
+
+            const user =  await User.findOne({username: username});
+
+            if(!user)return res.status(404).json({message: 'User not found'});
+
+            const checkPassword = await bcrypt.compare(password, user.password);
+
+            if(!checkPassword) return res.status(422).json({message: 'Password did not match'});
+
+            const secret_key = process.env.SECRET;
+
+            const token = jwt.sign({id: user._id}, secret_key);
+            
+            return res.json({message: 'Logged in', token: token, role: user.role});
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad Request ', error});
         }

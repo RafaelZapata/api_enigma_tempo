@@ -64,4 +64,17 @@ export default class DeckController
             return res.status(500).json({message: 'Erro inesperado. Bad request', error});
         }
     }
+
+    static async getByPlayerIdAndHeroId(req, res)
+    {
+        try {
+            const deck = await Deck.find({'player': {_id: req.params.player_id}, 'hero': {_id: req.params.hero_id}});
+
+            if(!deck) return res.status(404).json({message: 'Deck não encontrada'});
+
+            return res.json({deck: deck});
+        } catch (error) {
+            return res.status(500).json({message: 'Erro inesperado. Bad request', error});
+        }
+    }
 }

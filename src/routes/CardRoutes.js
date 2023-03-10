@@ -1,4 +1,5 @@
 import CardController from "../controllers/CardController.js";
+import checkToken from "../middleware/CheckToken.js";
 
 export default function cardRoutes(app)
 {

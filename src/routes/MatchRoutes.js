@@ -1,4 +1,5 @@
 import MatchController from "../controllers/MatchController.js";
+import checkToken from "../middleware/CheckToken.js";
 
 export default function matchRoutes(app)
 {

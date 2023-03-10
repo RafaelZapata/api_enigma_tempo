@@ -1,4 +1,5 @@
 import TypeController from "../controllers/TypeController.js";
+import checkToken from "../middleware/CheckToken.js";
 
 export default function typesRoutes(app)
 {

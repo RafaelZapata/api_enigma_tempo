@@ -1,4 +1,5 @@
 import DeckController from "../controllers/DeckController.js";
+import checkToken from "../middleware/CheckToken.js";
 
 export default function deckRoutes(app)
 {
@@ -20,5 +21,9 @@ export default function deckRoutes(app)
 
     app.delete('/api/decks/:id', (req, res) => {
         return DeckController.delete(req, res);
+    });
+
+    app.get('/api/decks/:player_id/:hero_id', (req, res) => {
+        return DeckController.getByPlayerIdAndHeroId(req, res);
     });
 }
