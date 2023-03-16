@@ -6,7 +6,7 @@ export default class SubclassController
     {
         try {
             const subclass = await Subclass.find();
-            return res.json({subclass: subclass});
+            return res.json({subclasses: subclass});
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad Request ', error});
         }

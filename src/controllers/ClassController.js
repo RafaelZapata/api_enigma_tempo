@@ -6,7 +6,7 @@ export default class ClassController
     {
         try {
             const card_class = await Class.find();
-            return res.json({class: card_class});
+            return res.json({classes: card_class});
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad Request ', error});
         }
