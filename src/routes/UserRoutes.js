@@ -11,7 +11,11 @@ export default function userRoutes(app)
         return UserController.insert(req, res);
     });
 
-    app.get('/api/user/:id', checkToken, (req, res) =>{
+    app.get('/api/user/:id', (req, res) =>{
         return UserController.get(req, res);
+    });
+    
+    app.get('/api/user/', (req, res) =>{
+        return UserController.getAll(req, res);
     });
 }
