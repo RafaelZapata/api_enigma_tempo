@@ -29,7 +29,7 @@ export default class UserController
     static async insert(req, res)
     {
         try {
-            const {name, last_name, username, email , password, confirmpassword} = req.body;
+            const {name, last_name, username, email , password} = req.body;
             const user = {name, last_name, username, email, password, role: 'player'};
 
             if(!name) return res.status(422).json({message: 'Name is required'});
@@ -39,9 +39,7 @@ export default class UserController
             if(!email) return res.status(422).json({message: 'Email is required'});
             
             if(!password) return res.status(422).json({message: 'Password is required'});
-            
-            if(password !== confirmpassword ) return res.status(422).json({message: 'Passwords did not match. Please try again'});
-
+           
             const salt = await bcrypt.genSalt(10);
             const passwordHash = await bcrypt.hash(password, salt);
             
