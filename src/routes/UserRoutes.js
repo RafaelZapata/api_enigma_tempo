@@ -15,7 +15,7 @@ export default function userRoutes(app)
         return UserController.get(req, res);
     });
     
-    app.get('/api/user/', (req, res) =>{
+    app.get('/api/users/', (req, res) =>{
         return UserController.getAll(req, res);
     });
 }

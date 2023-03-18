@@ -80,7 +80,7 @@ export default class UserController
 
             const token = jwt.sign({id: user._id}, secret_key);
             
-            return res.json({message: 'Logged in', token: token, role: user.role});
+            return res.json({message: 'Logged in', token: token, user: user});
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad Request ', error});
         }
