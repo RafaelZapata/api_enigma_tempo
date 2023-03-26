@@ -12,7 +12,7 @@ const cardSchema = Schema({
     rarity: {type: mongoose.Schema.Types.ObjectId, ref: "rarities"},
     acting: {type: mongoose.Schema.Types.ObjectId, ref: "classes"},
     category: {type: mongoose.Schema.Types.ObjectId, ref: "subclasses"},
-    effect: {type: String},
+    effect: {type: mongoose.Schema.Types.ObjectId, ref: "effects"},
     params: {type: String},
 })
 

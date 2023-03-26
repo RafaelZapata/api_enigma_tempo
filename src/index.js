@@ -12,6 +12,8 @@ app.use(express.json());
 app.use(bodyParse.urlencoded({ extended: false }));
 app.use(cors());
 
+mongoose.set('strictQuery', true);
+
 mongoose.connect(process.env.DATABASE_URI || '');
 
 applyRoutes(app);

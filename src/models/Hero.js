@@ -3,6 +3,7 @@ import { Schema } from "mongoose";
 
 const heroSchema = Schema({
     name: {type: String},
+    sprite: {type: String},
     mana: {type: Number},
     hero_lines: {type: String},
     effect: {type: String},
