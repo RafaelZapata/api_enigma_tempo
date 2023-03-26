@@ -28,8 +28,8 @@ export default class HeroController
     static async insert(req, res)
     {
         try {
-            const {name, mana, hero_lines, power, params} = req.body;
-            const hero = {name, mana, hero_lines, power, params}
+            const {name, mana, hero_lines, effect, params} = req.body;
+            const hero = {name, mana, hero_lines, effect, params}
 
             let result = await Hero.create(hero);
 
@@ -42,8 +42,8 @@ export default class HeroController
     static async update(req, res)
     {
         try {
-            const {name, mana, hero_lines, power, params} = req.body;
-            const hero = {name, mana, hero_lines, power, params}
+            const {name, mana, hero_lines, effect, params} = req.body;
+            const hero = {name, mana, hero_lines, effect, params}
 
             await Hero.findByIdAndUpdate(req.params.id, hero);
 

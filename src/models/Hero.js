@@ -5,7 +5,7 @@ const heroSchema = Schema({
     name: {type: String},
     mana: {type: Number},
     hero_lines: {type: String},
-    power: {type: String},
+    effect: {type: String},
     params: {type: String}
 
 })

@@ -10,8 +10,8 @@ const cardSchema = Schema({
     sprite: {type: String},
     type: {type: mongoose.Schema.Types.ObjectId, ref: "types"},
     rarity: {type: mongoose.Schema.Types.ObjectId, ref: "rarities"},
-    card_class: {type: mongoose.Schema.Types.ObjectId, ref: "classes"},
-    subclass: {type: mongoose.Schema.Types.ObjectId, ref: "subclasses"},
+    acting: {type: mongoose.Schema.Types.ObjectId, ref: "classes"},
+    category: {type: mongoose.Schema.Types.ObjectId, ref: "subclasses"},
     effect: {type: String},
     params: {type: String},
 })
