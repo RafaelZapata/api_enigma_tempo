@@ -7,6 +7,7 @@ const cardSchema = Schema({
     health: {type: Number},
     mana: {type: Number},
     description: {type: String},
+    context: {type: String},
     sprite: {type: String},
     type: {type: mongoose.Schema.Types.ObjectId, ref: "types"},
     rarity: {type: mongoose.Schema.Types.ObjectId, ref: "rarities"},

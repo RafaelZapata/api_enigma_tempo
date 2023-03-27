@@ -7,7 +7,9 @@ const userSchema = Schema({
     username: {type: String, require: true, unique: true},
     email: {type: String, require: true, unique: true},
     password: {type: String, require: true},
-    role: {type: String, require: true}
+    role: {type: String, require: true},
+    question_points: {type: Number},
+    match_points: {type: Number}
 })
 
 const User = mongoose.model('users', userSchema)
