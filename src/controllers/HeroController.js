@@ -5,7 +5,7 @@ export default class HeroController
     static async getAll(req, res)
     {
         try {
-            const heroes = await Hero.find();
+            const heroes = await Hero.find().populate('effect');
             return res.json({heroes: heroes});
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad Request ', error});
@@ -15,7 +15,7 @@ export default class HeroController
     static async get(req, res)
     {
         try {
-            const hero = await Hero.findById(req.params.id);
+            const hero = await Hero.findById(req.params.id).populate();
             
             if(!hero) return res.status(404).json({message: 'Heroí não encontrada'});
 

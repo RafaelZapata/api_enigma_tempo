@@ -5,7 +5,7 @@ export default class CardController
     static async getAll(req, res)
     {
         try {
-            const cards = await Card.find().populate('rarity').populate('type').populate('acting').populate('category');
+            const cards = await Card.find().populate('rarity').populate('type').populate('acting').populate('category').populate('effect');
             return res.json({cards: cards});
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad Request ', error});

@@ -7,7 +7,7 @@ const heroSchema = Schema({
     sprite: {type: String},
     mana: {type: Number},
     hero_lines: {type: String},
-    effect: {type: mongoose.Schema.Types.ObjectId, ref: "hero_effects"},
+    effect: {type: mongoose.Schema.Types.ObjectId, ref: "effects"},
     params: {type: String}
 
 })

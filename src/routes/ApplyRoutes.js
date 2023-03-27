@@ -22,5 +22,4 @@ export default function applyRoutes(app)
     classRoutes(app);
     subclassRoutes(app);
     effectRoutes(app);
-    heroEffectRoutes(app);
 }
