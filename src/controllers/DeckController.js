@@ -5,7 +5,32 @@ export default class DeckController
     static async getAll(req, res)
     {
         try {
-            const decks = await Deck.find().populate('player').populate('hero').populate('cards');
+            const decks = await Deck.find().populate('player').populate('hero').populate('cards').populate({
+                path: 'cards',
+                populate: {
+                    path: 'rarity'
+                }
+            }).populate({
+                path: 'cards',
+                populate: {
+                    path: 'type'
+                }
+            }).populate({
+                path: 'cards',
+                populate: {
+                    path: 'acting'
+                }
+            }).populate({
+                path: 'cards',
+                populate: {
+                    path: 'category'
+                }
+            }).populate({
+                path: 'cards',
+                populate: {
+                    path: 'effect'
+                }
+            });
             return res.json({decks: decks});
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad Request ', error});
@@ -15,7 +40,32 @@ export default class DeckController
     static async get(req, res)
     {
         try {
-            const deck = await Deck.findById(req.params.id).populate('player').populate('hero').populate('cards');
+            const deck = await Deck.findById(req.params.id).populate('player').populate('hero').populate('cards').populate({
+                path: 'cards',
+                populate: {
+                    path: 'rarity'
+                }
+            }).populate({
+                path: 'cards',
+                populate: {
+                    path: 'type'
+                }
+            }).populate({
+                path: 'cards',
+                populate: {
+                    path: 'acting'
+                }
+            }).populate({
+                path: 'cards',
+                populate: {
+                    path: 'category'
+                }
+            }).populate({
+                path: 'cards',
+                populate: {
+                    path: 'effect'
+                }
+            });
 
             if(!deck) return res.status(404).json({message: 'Deck não encontrada'});
 

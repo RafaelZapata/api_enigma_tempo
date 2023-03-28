@@ -30,7 +30,7 @@ export default class UserController
     {
         try {
             const {name, last_name, username, email , password} = req.body;
-            const user = {name, last_name, username, email, password, role: 'player'};
+            const user = {name, last_name, username, email, password, role: 'player', question_points: 0, match_points: 0};
 
             if(!name) return res.status(422).json({message: 'Name is required'});
 
@@ -83,6 +83,21 @@ export default class UserController
             return res.json({message: 'Logged in', token: token, user: user});
         } catch (error) {
             return res.status(500).json({message: 'Erro inesperado. Bad Request ', error});
+        }
+    }
+
+    static async update(req, res)
+    {
+        try {
+            const {name, last_name, username, email, password, role, question_points, match_points} = req.body;
+            const user = {name, last_name, username, email, password, role, question_points, match_points}
+
+            await User.findByIdAndUpdate(req.params.id, user)
+
+            return res.json({message: 'User updated'});
+
+        } catch (error) {
+            return res.status(500).json({message: 'Erro inesperado. Bad request', error});
         }
     }
 }

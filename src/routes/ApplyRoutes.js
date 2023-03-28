@@ -4,6 +4,7 @@ import deckRoutes from "./DeckRoutes.js";
 import effectRoutes from "./EffectRoutes.js";
 import heroRoutes from "./HeroRoutes.js";
 import matchRoutes from "./MatchRoutes.js";
+import quizRoutes from "./QuizRoutes.js";
 import rarityRoutes from "./RarityRoutes.js";
 import subclassRoutes from "./SubclassRoutes.js";
 import typesRoutes from "./TypeRoutes.js";
@@ -21,4 +22,5 @@ export default function applyRoutes(app)
     classRoutes(app);
     subclassRoutes(app);
     effectRoutes(app);
+    quizRoutes(app);
 }

@@ -14,6 +14,10 @@ export default function userRoutes(app)
     app.get('/api/user/:id', (req, res) =>{
         return UserController.get(req, res);
     });
+
+    app.patch('/api/user/:id', (req, res) =>{
+        return UserController.update(req, res);
+    });
     
     app.get('/api/users/', (req, res) =>{
         return UserController.getAll(req, res);
