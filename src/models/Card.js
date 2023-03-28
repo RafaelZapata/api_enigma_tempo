@@ -15,6 +15,7 @@ const cardSchema = Schema({
     category: {type: mongoose.Schema.Types.ObjectId, ref: "subclasses"},
     effect: {type: mongoose.Schema.Types.ObjectId, ref: "effects"},
     params: {type: String},
+    restrict_acting: {type: Boolean}
 })
 
 const Card = mongoose.model('cards', cardSchema);
