@@ -30,8 +30,6 @@ export default class CardController
         try {
             const {name, attack, health, mana, description, sprite, type, rarity, acting, category, effect, params, context, context_in_game, restrict_acting} = req.body;
 
-            if(restrict_acting != true) restrict_acting = false;
-
             const card = {name, attack, health, mana, description, sprite, type, rarity, acting, category, effect, params, context, context_in_game, restrict_acting}
 
             let result = await Card.create(card);
