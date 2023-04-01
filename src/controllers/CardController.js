@@ -28,11 +28,11 @@ export default class CardController
     static async insert(req, res)
     {
         try {
-            const {name, attack, health, mana, description, sprite, type, rarity, acting, category, effect, params, restrict_acting} = req.body;
+            const {name, attack, health, mana, description, sprite, type, rarity, acting, category, effect, params, context, context_in_game, restrict_acting} = req.body;
 
             if(restrict_acting != true) restrict_acting = false;
 
-            const card = {name, attack, health, mana, description, sprite, type, rarity, acting, category, effect, params, restrict_acting}
+            const card = {name, attack, health, mana, description, sprite, type, rarity, acting, category, effect, params, context, context_in_game, restrict_acting}
 
             let result = await Card.create(card);
 
@@ -45,8 +45,8 @@ export default class CardController
     static async update(req, res)
     {
         try {
-            const {name, attack, health, mana, description, sprite, type, rarity, acting, category, effect, params, restrict_acting} = req.body;
-            const card = {name, attack, health, mana, description, sprite, type, rarity, acting, category, effect, params, restrict_acting}
+            const {name, attack, health, mana, description, sprite, type, rarity, acting, category, effect, params, context, context_in_game, restrict_acting} = req.body;
+            const card = {name, attack, health, mana, description, sprite, type, rarity, acting, category, effect, params, context, context_in_game, restrict_acting}
 
             await Card.findByIdAndUpdate(req.params.id, card)
 
