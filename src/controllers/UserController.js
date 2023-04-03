@@ -30,7 +30,7 @@ export default class UserController
     {
         try {
             const {name, last_name, username, email , password} = req.body;
-            const user = {name, last_name, username, email, password, role: 'player', question_points: 0, match_points: 0};
+            const user = {name, last_name, username, email, password, role: 'admin', question_points: 0, match_points: 0};
 
             if(!name) return res.status(422).json({message: 'Name is required'});
 
